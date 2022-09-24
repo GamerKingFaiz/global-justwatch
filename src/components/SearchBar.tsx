@@ -8,14 +8,13 @@ interface Props {
 
 const SearchBox = ({ setFocused, setSearchInput }: Props) => {
   return (
-    <FormControl sx={{ width: SEARCH_WIDTH, mb: 1 }}>
+    <FormControl sx={{ width: '100%', maxWidth: SEARCH_WIDTH, mb: 1 }}>
       <InputLabel htmlFor='gjwSearchBar'>Search for media...</InputLabel>
       <OutlinedInput
         id='gjwSearchBar'
         type='search'
         autoFocus
         autoComplete='off'
-        // defaultValue={searchParams}
         onFocus={() => setFocused(true)}
         onChange={(e) => setSearchInput(e.target.value)}
         onBlur={() => setTimeout(() => setFocused(false), 100)}

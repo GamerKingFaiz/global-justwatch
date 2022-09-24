@@ -6,13 +6,13 @@ import {
   Typography,
 } from '@mui/material';
 import { grey } from '@mui/material/colors';
-import { Link } from 'react-router-dom';
 import {
   GenericObject,
   SEARCH_HEIGHT,
   SEARCH_WIDTH,
   stripLetters,
 } from '../utils/constants';
+import StyledLink from './StyledLink';
 
 interface Props {
   loading: boolean;
@@ -26,7 +26,10 @@ const SearchResults = ({ loading, searchResults }: Props) => {
     <>
       {searchResults.map((result: GenericObject, index) => {
         return (
-          <Link to={`/media/${result.object_type}/${result.id}`} key={index}>
+          <StyledLink
+            to={`/media/${result.object_type}/${result.id}`}
+            key={index}
+          >
             <Card
               sx={{
                 mb: 1,
@@ -52,7 +55,7 @@ const SearchResults = ({ loading, searchResults }: Props) => {
                 </Typography>
               </CardContent>
             </Card>
-          </Link>
+          </StyledLink>
         );
       })}
     </>

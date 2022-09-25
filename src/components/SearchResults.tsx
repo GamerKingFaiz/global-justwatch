@@ -6,13 +6,13 @@ import {
   Typography,
 } from '@mui/material';
 import { grey } from '@mui/material/colors';
+import StyledLink from '../styles/StyledLink';
 import {
   GenericObject,
   SEARCH_HEIGHT,
   SEARCH_WIDTH,
   stripLetters,
 } from '../utils/constants';
-import StyledLink from './StyledLink';
 
 interface Props {
   loading: boolean;

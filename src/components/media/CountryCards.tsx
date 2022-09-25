@@ -1,4 +1,5 @@
 import { Box, Card, CardContent, Typography } from '@mui/material';
+import StyledAnchor from '../../styles/StyledAnchor';
 import { GenericObject, stripLetters } from '../../utils/constants';
 
 interface Props {
@@ -19,20 +20,17 @@ const CountryCards = ({ data, type }: Props) => {
               <Box display='flex' flexWrap='wrap' mt={2} ml={2}>
                 {service.offers.map((offer: GenericObject, index: number) => {
                   return (
-                    <Box
-                      key={index}
-                      mr={2}
-                      mb={2}
-                      display='flex'
-                      flexDirection='column'
-                      alignItems='center'
-                    >
-                      {offer.iconUrl ? (
-                        <a
-                          href={offer.urls.standard_web}
-                          target='_blank'
-                          rel='noreferrer'
-                        >
+                    <Box key={index} mr={2} mb={2}>
+                      <StyledAnchor
+                        href={offer.urls.standard_web}
+                        target='_blank'
+                        style={{
+                          display: 'flex',
+                          flexDirection: 'column',
+                          alignItems: 'center',
+                        }}
+                      >
+                        {offer.iconUrl ? (
                           <img
                             src={`https://www.justwatch.com/images/icon/${stripLetters(
                               offer.iconUrl
@@ -41,16 +39,16 @@ const CountryCards = ({ data, type }: Props) => {
                             width={50}
                             style={{ borderRadius: '5px' }}
                           />
-                        </a>
-                      ) : (
-                        <Typography>{offer.package_short_name}</Typography>
-                      )}
-                      {type === 'show' && (
-                        <Typography variant='caption'>
-                          {offer.element_count} season
-                          {offer.element_count > 1 && 's'}
-                        </Typography>
-                      )}
+                        ) : (
+                          <Typography>{offer.package_short_name}</Typography>
+                        )}
+                        {type === 'show' && (
+                          <Typography variant='caption' mt={0.5}>
+                            {offer.element_count} season
+                            {offer.element_count > 1 && 's'}
+                          </Typography>
+                        )}
+                      </StyledAnchor>
                     </Box>
                   );
                 })}

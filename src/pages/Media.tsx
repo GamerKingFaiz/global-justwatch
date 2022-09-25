@@ -20,10 +20,14 @@ const Media = () => {
       });
   }, [type, id]);
 
+  useEffect(() => {
+    document.title = data?.metadata.title;
+  }, [data?.metadata.title]);
+
   return (
     <Box m={3}>
       {loading ? (
-        <Skeleton variant='rounded' />
+        <Skeleton variant='rounded' height={284} />
       ) : (
         <Box display='flex' justifyContent='center'>
           <Box width='100%' maxWidth={750}>

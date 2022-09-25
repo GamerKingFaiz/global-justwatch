@@ -26,16 +26,16 @@ const Media = () => {
 
   return (
     <Box m={3}>
-      {loading ? (
-        <Skeleton variant='rounded' height={284} />
-      ) : (
-        <Box display='flex' justifyContent='center'>
+      <Box display='flex' justifyContent='center'>
+        {loading ? (
+          <Skeleton variant='rounded' width={750} height={284} />
+        ) : (
           <Box width='100%' maxWidth={750}>
             <Header data={data} />
             <CountryCards data={data} type={type} />
           </Box>
-        </Box>
-      )}
+        )}
+      </Box>
     </Box>
   );
 };

@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import SearchBar from './components/SearchBar';
 import SearchResults from './components/SearchResults';
+import HomePage from './pages/HomePage';
 import Media from './pages/Media';
 import NotFound from './pages/NotFound';
 import { API_URL } from './utils/constants';
@@ -49,11 +50,13 @@ const App = () => {
           <SearchResults loading={loading} searchResults={searchResults} />
         )}
       </Box>
-      <Routes>
-        <Route path='/' element={<></>} />
-        <Route path='/media/:type/:id' element={<Media />} />
-        <Route path='*' element={<NotFound />} />
-      </Routes>
+      <Box m={3}>
+        <Routes>
+          <Route path='/' element={<HomePage />} />
+          <Route path='/media/:type/:id' element={<Media />} />
+          <Route path='*' element={<NotFound />} />
+        </Routes>
+      </Box>
     </ThemeProvider>
   );
 };

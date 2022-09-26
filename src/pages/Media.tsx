@@ -25,17 +25,15 @@ const Media = () => {
   }, [data?.metadata.title]);
 
   return (
-    <Box m={3}>
-      <Box display='flex' justifyContent='center'>
-        {loading ? (
-          <Skeleton variant='rounded' width={750} height={284} />
-        ) : (
-          <Box width='100%' maxWidth={750}>
-            <Header data={data} />
-            <CountryCards data={data} type={type} />
-          </Box>
-        )}
-      </Box>
+    <Box display='flex' justifyContent='center'>
+      {loading ? (
+        <Skeleton variant='rounded' width={750} height={284} />
+      ) : (
+        <Box width='100%' maxWidth={750}>
+          <Header data={data} />
+          <CountryCards data={data} type={type} />
+        </Box>
+      )}
     </Box>
   );
 };

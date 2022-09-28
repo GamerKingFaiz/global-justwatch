@@ -1,4 +1,4 @@
-import { FormControl, InputLabel, OutlinedInput } from '@mui/material';
+import { TextField } from '@mui/material';
 import { SEARCH_WIDTH } from '../utils/constants';
 
 interface Props {
@@ -8,19 +8,17 @@ interface Props {
 
 const SearchBox = ({ setFocused, setSearchInput }: Props) => {
   return (
-    <FormControl sx={{ width: '100%', maxWidth: SEARCH_WIDTH, mb: 1 }}>
-      <InputLabel htmlFor='gjwSearchBar'>Search for media...</InputLabel>
-      <OutlinedInput
-        id='gjwSearchBar'
-        type='search'
-        autoFocus
-        autoComplete='off'
-        onFocus={() => setFocused(true)}
-        onChange={(e) => setSearchInput(e.target.value)}
-        onBlur={() => setTimeout(() => setFocused(false), 100)}
-        label='Search for media...'
-      />
-    </FormControl>
+    <TextField
+      sx={{ width: '100%', maxWidth: SEARCH_WIDTH, mb: 1 }}
+      id='gjwSearchBar'
+      label='Search for media...'
+      variant='filled'
+      autoFocus
+      autoComplete='off'
+      onFocus={() => setFocused(true)}
+      onChange={(e) => setSearchInput(e.target.value)}
+      onBlur={() => setTimeout(() => setFocused(false), 100)}
+    />
   );
 };
 

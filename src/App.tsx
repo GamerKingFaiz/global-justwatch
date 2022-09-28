@@ -2,7 +2,6 @@ import { Box, createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import SearchBar from './components/SearchBar';
-import SearchResults from './components/SearchResults';
 import HomePage from './pages/HomePage';
 import Media from './pages/Media';
 import NotFound from './pages/NotFound';
@@ -18,7 +17,6 @@ const App = () => {
   const [searchInput, setSearchInput] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [focused, setFocused] = useState(true);
 
   const handleSearch = async (searchInput: string) => {
     if (searchInput) {
@@ -36,7 +34,7 @@ const App = () => {
     searchInput && setLoading(true);
     const delayDebounceFn = setTimeout(() => {
       handleSearch(searchInput);
-    }, 500);
+    }, 250);
 
     return () => clearTimeout(delayDebounceFn);
   }, [searchInput]);
@@ -44,12 +42,12 @@ const App = () => {
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
-      <Box p={2} display='flex' flexDirection='column' alignItems='center'>
-        <SearchBar setFocused={setFocused} setSearchInput={setSearchInput} />
-        {focused && (
-          <SearchResults loading={loading} searchResults={searchResults} />
-        )}
-      </Box>
+      <SearchBar
+        setSearchInput={setSearchInput}
+        loading={loading}
+        searchResults={searchResults}
+      />
+
       <Box m={3}>
         <Routes>
           <Route path='/' element={<HomePage />} />

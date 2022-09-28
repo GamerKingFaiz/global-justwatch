@@ -1,24 +1,48 @@
-import { TextField } from '@mui/material';
-import { SEARCH_WIDTH } from '../utils/constants';
+import { Box, ClickAwayListener, TextField } from '@mui/material';
+import { useState } from 'react';
+import { GenericObject, SEARCH_WIDTH } from '../utils/constants';
+import SearchResults from './SearchResults';
 
 interface Props {
-  setFocused: Function;
   setSearchInput: Function;
+  loading: boolean;
+  searchResults: GenericObject[];
 }
 
-const SearchBox = ({ setFocused, setSearchInput }: Props) => {
+const SearchBox = ({ setSearchInput, loading, searchResults }: Props) => {
+  const [open, setOpen] = useState(true);
+
   return (
-    <TextField
-      sx={{ width: '100%', maxWidth: SEARCH_WIDTH, mb: 1 }}
-      id='gjwSearchBar'
-      label='Search for media...'
-      variant='filled'
-      autoFocus
-      autoComplete='off'
-      onFocus={() => setFocused(true)}
-      onChange={(e) => setSearchInput(e.target.value)}
-      onBlur={() => setTimeout(() => setFocused(false), 100)}
-    />
+    <Box display='flex' justifyContent='center'>
+      <ClickAwayListener onClickAway={() => setOpen(false)}>
+        <Box
+          m={2}
+          display='flex'
+          flexDirection='column'
+          alignItems='center'
+          width='100%'
+          maxWidth={SEARCH_WIDTH}
+        >
+          <TextField
+            sx={{ width: '100%', mb: 1 }}
+            id='gjwSearchBar'
+            label='Search for media...'
+            variant='filled'
+            autoFocus
+            autoComplete='off'
+            onFocus={() => setOpen(true)}
+            onChange={(e) => setSearchInput(e.target.value)}
+          />
+          {open && (
+            <SearchResults
+              loading={loading}
+              searchResults={searchResults}
+              setOpen={setOpen}
+            />
+          )}
+        </Box>
+      </ClickAwayListener>
+    </Box>
   );
 };
 

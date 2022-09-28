@@ -1,4 +1,5 @@
 import {
+  Box,
   Card,
   CardContent,
   CardMedia,
@@ -17,18 +18,20 @@ import {
 interface Props {
   loading: boolean;
   searchResults: GenericObject[];
+  setOpen: Function;
 }
 
-const SearchResults = ({ loading, searchResults }: Props) => {
+const SearchResults = ({ loading, searchResults, setOpen }: Props) => {
   return loading ? (
     <Skeleton variant='rounded' width={SEARCH_WIDTH} height={SEARCH_HEIGHT} />
   ) : (
-    <>
+    <Box>
       {searchResults.map((result: GenericObject, index) => {
         return (
           <StyledLink
             to={`/media/${result.object_type}/${result.id}`}
             key={index}
+            onClick={() => setOpen(false)}
           >
             <Card
               sx={{
@@ -58,7 +61,7 @@ const SearchResults = ({ loading, searchResults }: Props) => {
           </StyledLink>
         );
       })}
-    </>
+    </Box>
   );
 };
 

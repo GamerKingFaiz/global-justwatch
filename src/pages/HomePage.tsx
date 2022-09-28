@@ -50,7 +50,8 @@ const HomePage = () => {
         ) : (
           <Box
             display='grid'
-            gridTemplateColumns='repeat(auto-fill,minmax(164px,1fr))'
+            // Minimum 2 columns, maximum 10
+            gridTemplateColumns='repeat(auto-fill, minmax(min(100%/3, max(164px, 100%/11)), 1fr))'
             gap={2}
           >
             {data?.items.map((media: GenericObject, index: number) => (

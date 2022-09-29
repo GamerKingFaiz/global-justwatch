@@ -1,5 +1,5 @@
 import { Box, TextField } from '@mui/material';
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { GenericObject, SEARCH_WIDTH } from '../utils/constants';
 import SearchResults from './SearchResults';
 
@@ -11,6 +11,20 @@ interface Props {
 
 const SearchBox = ({ setSearchInput, loading, searchResults }: Props) => {
   const [open, setOpen] = useState(false);
+
+  const escFunction = useCallback((event: KeyboardEvent) => {
+    if (event.key === 'Escape') {
+      setOpen(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener('keydown', escFunction, false);
+
+    return () => {
+      document.removeEventListener('keydown', escFunction, false);
+    };
+  }, [escFunction]);
 
   return (
     <Box display='flex' justifyContent='center'>
@@ -28,8 +42,10 @@ const SearchBox = ({ setSearchInput, loading, searchResults }: Props) => {
           label='Search for media...'
           variant='filled'
           autoComplete='off'
-          onFocus={() => setOpen(true)}
-          onChange={(e) => setSearchInput(e.target.value)}
+          onChange={(e) => {
+            setSearchInput(e.target.value);
+            setOpen(true);
+          }}
         />
         {open && (
           <SearchResults

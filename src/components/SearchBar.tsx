@@ -42,6 +42,7 @@ const SearchBox = ({ setSearchInput, loading, searchResults }: Props) => {
           label='Search for media...'
           variant='filled'
           autoComplete='off'
+          onClick={() => setOpen(true)}
           onChange={(e) => {
             setSearchInput(e.target.value);
             setOpen(true);

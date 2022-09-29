@@ -25,7 +25,7 @@ const SearchResults = ({ loading, searchResults, setOpen }: Props) => {
   return loading ? (
     <Skeleton variant='rounded' width={SEARCH_WIDTH} height={SEARCH_HEIGHT} />
   ) : (
-    <Box>
+    <Box zIndex={2}>
       {searchResults.map((result: GenericObject, index) => {
         return (
           <StyledLink

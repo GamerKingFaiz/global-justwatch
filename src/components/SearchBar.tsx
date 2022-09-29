@@ -24,7 +24,7 @@ const SearchBox = ({ setSearchInput, loading, searchResults }: Props) => {
           maxWidth={SEARCH_WIDTH}
         >
           <TextField
-            sx={{ width: '100%', mb: 1 }}
+            sx={{ width: '100%', mb: 1, zIndex: 2 }}
             id='gjwSearchBar'
             label='Search for media...'
             variant='filled'
@@ -39,6 +39,18 @@ const SearchBox = ({ setSearchInput, loading, searchResults }: Props) => {
               searchResults={searchResults}
               setOpen={setOpen}
             />
+          )}
+          {/* Click blocker */}
+          {open && (
+            <Box
+              position='fixed'
+              width='100%'
+              height='100%'
+              top={0}
+              left={0}
+              bgcolor='rgba(0,0,0,0.5)'
+              onClick={() => setOpen(false)}
+            ></Box>
           )}
         </Box>
       </ClickAwayListener>

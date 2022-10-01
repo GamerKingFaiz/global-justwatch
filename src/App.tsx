@@ -1,14 +1,16 @@
-import HomeIcon from '@mui/icons-material/Home';
+import { Home, KeyboardArrowUp } from '@mui/icons-material';
 import {
   AppBar,
   Box,
   createTheme,
   CssBaseline,
+  Fab,
   ThemeProvider,
   Toolbar,
 } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import ScrollTop from './components/ScrollTop';
 import SearchBar from './components/SearchBar';
 import HomePage from './pages/HomePage';
 import Media from './pages/Media';
@@ -51,10 +53,10 @@ const App = () => {
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
-      <AppBar position='sticky'>
+      <AppBar>
         <Toolbar sx={{ justifyContent: 'space-between' }}>
           <StyledLink to={'/'}>
-            <HomeIcon fontSize='large' />
+            <Home fontSize='large' />
           </StyledLink>
           <SearchBar
             setSearchInput={setSearchInput}
@@ -63,6 +65,7 @@ const App = () => {
           />
         </Toolbar>
       </AppBar>
+      <Toolbar id='back-to-top-anchor' sx={{ mb: 8 }} />
 
       <Box m={3}>
         <Routes>
@@ -71,6 +74,12 @@ const App = () => {
           <Route path='*' element={<NotFound />} />
         </Routes>
       </Box>
+
+      <ScrollTop>
+        <Fab aria-label='scroll back to top'>
+          <KeyboardArrowUp />
+        </Fab>
+      </ScrollTop>
     </ThemeProvider>
   );
 };

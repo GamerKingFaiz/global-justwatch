@@ -33,7 +33,7 @@ const App = () => {
     if (searchInput) {
       const response = await fetch(`${API_URL}/search/${searchInput}`);
       const results = await response.json();
-      setSearchResults(results.items);
+      setSearchResults(results.data.popularTitles.edges);
       setLoading(false);
     } else {
       setSearchResults([]);
@@ -70,7 +70,7 @@ const App = () => {
       <Box m={3}>
         <Routes>
           <Route path='/' element={<HomePage />} />
-          <Route path='/media/:type/:id' element={<Media />} />
+          <Route path='/us/:type/:id' element={<Media />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </Box>

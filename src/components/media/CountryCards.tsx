@@ -1,6 +1,6 @@
 import { Box, Card, CardContent, Typography } from '@mui/material';
 import StyledAnchor from '../../styles/StyledAnchor';
-import { GenericObject, stripLetters } from '../../utils/constants';
+import { GenericObject } from '../../utils/constants';
 
 interface Props {
   data: GenericObject | null;
@@ -22,7 +22,7 @@ const CountryCards = ({ data, type }: Props) => {
                   return (
                     <Box key={index} mr={2} mb={2}>
                       <StyledAnchor
-                        href={offer.urls.standard_web}
+                        // href={offer.urls.standard_web}
                         target='_blank'
                         style={{
                           display: 'flex',
@@ -30,22 +30,20 @@ const CountryCards = ({ data, type }: Props) => {
                           alignItems: 'center',
                         }}
                       >
-                        {offer.iconUrl ? (
+                        {offer.package.icon ? (
                           <img
-                            src={`https://www.justwatch.com/images/icon/${stripLetters(
-                              offer.iconUrl
-                            )}/s100`}
+                            src={`https://images.justwatch.com${offer.package.icon}`}
                             alt='streaming service logo'
                             width={50}
                             style={{ borderRadius: '5px' }}
                           />
                         ) : (
-                          <Typography>{offer.package_short_name}</Typography>
+                          <Typography>{offer.package.clearName}</Typography>
                         )}
-                        {type === 'show' && (
+                        {type === 'tv-show' && (
                           <Typography variant='caption' mt={0.5}>
-                            {offer.element_count} season
-                            {offer.element_count > 1 && 's'}
+                            {offer.elementCount} season
+                            {offer.elementCount > 1 && 's'}
                           </Typography>
                         )}
                       </StyledAnchor>

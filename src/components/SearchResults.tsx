@@ -8,12 +8,7 @@ import {
 } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import StyledLink from '../styles/StyledLink';
-import {
-  GenericObject,
-  SEARCH_HEIGHT,
-  SEARCH_WIDTH,
-  stripLetters,
-} from '../utils/constants';
+import { GenericObject, SEARCH_HEIGHT, SEARCH_WIDTH } from '../utils/constants';
 
 interface Props {
   loading: boolean;
@@ -44,7 +39,7 @@ const SearchResults = ({ loading, searchResults, setOpen }: Props) => {
         searchResults.map((result: GenericObject, index) => {
           return (
             <StyledLink
-              to={`/media/${result.object_type}/${result.id}`}
+              to={result.node.content.fullPath}
               key={index}
               onClick={() => setOpen(false)}
             >
@@ -56,20 +51,19 @@ const SearchResults = ({ loading, searchResults, setOpen }: Props) => {
                   display: 'flex',
                 }}
               >
-                {result.poster && (
+                {result.node.content.posterUrl && (
                   <CardMedia
                     sx={{ width: 53 }}
                     component='img'
-                    image={`https://images.justwatch.com/poster/${stripLetters(
-                      result.poster
-                    )}/s592`}
+                    image={`https://images.justwatch.com/${result.node.content.posterUrl}`}
                     alt='media poster'
                   />
                 )}
                 <CardContent>
-                  <Typography>{result.title}</Typography>
+                  <Typography>{result.node.content.title}</Typography>
                   <Typography variant='caption' color={grey[600]}>
-                    {result.object_type}, {result.original_release_year}
+                    {result.node.objectType},{' '}
+                    {result.node.content.originalReleaseYear}
                   </Typography>
                 </CardContent>
               </Card>

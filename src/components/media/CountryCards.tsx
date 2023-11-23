@@ -22,7 +22,7 @@ const CountryCards = ({ data, type }: Props) => {
                   return (
                     <Box key={index} mr={2} mb={2}>
                       <StyledAnchor
-                        // href={offer.urls.standard_web}
+                        href={offer.standardWebURL}
                         target='_blank'
                         style={{
                           display: 'flex',

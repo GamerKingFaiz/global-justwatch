@@ -21,7 +21,7 @@ const Media = () => {
   }, [type, id]);
 
   useEffect(() => {
-    document.title = data?.metadata.title;
+    document.title = data?.metadata.title || 'Global JustWatch';
   }, [data?.metadata.title]);
 
   return (

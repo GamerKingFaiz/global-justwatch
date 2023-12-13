@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/global-justwatch/static/js/main.d1e4f6e3.js",
+    "main.js": "/global-justwatch/static/js/main.a16c4b44.js",
     "index.html": "/global-justwatch/index.html",
-    "main.d1e4f6e3.js.map": "/global-justwatch/static/js/main.d1e4f6e3.js.map"
+    "main.a16c4b44.js.map": "/global-justwatch/static/js/main.a16c4b44.js.map"
   },
   "entrypoints": [
-    "static/js/main.d1e4f6e3.js"
+    "static/js/main.a16c4b44.js"
   ]
 }
